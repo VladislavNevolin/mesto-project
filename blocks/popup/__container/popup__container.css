@@ -2,7 +2,6 @@
     background-color: white;
     border-radius: 10px;
     width: 430px;
-    height: 330px;
     position: relative;
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
 }
@@ -10,6 +9,5 @@
 @media screen and (max-width: 1049px){ 
     .popup__container{ 
         width: 282px;
-        height: 322px;
     } 
 }

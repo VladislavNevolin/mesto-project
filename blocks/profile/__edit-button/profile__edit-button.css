@@ -1,8 +1,8 @@
 .profile__edit-button{
     width: 24px;
     height: 24px;
-    margin-left: 18px;
-    align-self: end;
+    margin: auto auto 10px 18px;
+    /* align-self: baseline; */
     background: url(../../../images/PenProfile.svg) center / 10px no-repeat;
     border: 1px solid #FFFFFF;
     transition: opacity .5s;

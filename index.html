@@ -18,54 +18,54 @@
             <img src="./images/JackIvKusto.jpg" alt="Жак Ив Кусто" class="profile__avatar ">
             <div class="profile__info">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button title="button" class="profile__edit-button"></button>
+                <button type="button" class="profile__edit-button"></button>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <button title="button" class="profile__add-button border"></button>
+            <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
-            <div class="element">
+            <article class="element">
                 <img src="./images/KarCher.jpg" alt="Карачаевск" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Карачаевск</h2>
-                    <button title="button" class="element__button-hert element__button-heart_active"></button>
+                    <button type="button" class="element__button-heart element__button-heart_active"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Elbrus.png" alt="Гора Эльбрус" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button title="button" class="element__button-hert"></button>
+                    <button type="button" class="element__button-hert"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Dombay.png" alt="Домбай" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Домбай</h2>
-                    <button title="button" class="element__button-hert"></button>
+                    <button type="button" class="element__button-hert"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Elbrus.png" alt="Гора Эльбрус" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button title="button" class="element__button-hert"></button>
+                    <button type="button" class="element__button-hert"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/Dombay.png" alt="Домбай" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Домбай</h2>
-                    <button title="button" class="element__button-hert"></button>
+                    <button type="button" class="element__button-hert"></button>
                 </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                 <img src="./images/KarCher.jpg" alt="Карачаево-Черкессия" class="element__image">
                 <div class="element__theme">
                     <h2 class="element__title">Карачаево-Черкессия</h2>
-                    <button title="button" class="element__button-hert"></button>
+                    <button type="button" class="element__button-hert"></button>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
     
@@ -77,11 +77,11 @@
         <div class="popup__container">
             <button type="button" class="popup__button-close"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <fieldset class="popup__form">
-                <input type="text" class="popup__input" id="title" placeholder="Жак Ив Кусто">
-                <input type="text" class="popup__input" id="subtitle" placeholder="Исследователь океана">
-                <button type="button" class="popup__button-save">Сохранить</button>
-            </fieldset>
+            <form class="popup__form" name="popup">
+                <input type="text" class="popup__input" id="title" placeholder="Жак Ив Кусто" name="popupInput">
+                <input type="text" class="popup__input" id="subtitle" placeholder="Исследователь океана" name="popupInput">
+                <button type="submit" class="popup__button-save">Сохранить</button>
+            </form>
         </div>
     </div>
         

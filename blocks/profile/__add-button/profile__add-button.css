@@ -6,6 +6,7 @@
     background:  url(../../../images/PlusProfile.svg) center / 22px no-repeat;
     border: 2px solid #FFFFFF;
     transition: opacity .5s;
+    border-radius: 2px;
 }
 
 .profile__add-button:hover{
