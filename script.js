@@ -69,7 +69,7 @@ initialCards.forEach((item) => {
 });
 
 // Изменение данных в попапе профиля
-function submitFormHandler (evt){
+function submitFormProfile (evt){
   evt.preventDefault();
   nameReplacement.textContent = nameInput.value;
   jobReplacement.textContent = jobInput.value;
@@ -87,9 +87,13 @@ function submitFormPlace (evt){
 }
 
 formElementPlace.addEventListener('submit',submitFormPlace);
-formElement.addEventListener('submit', submitFormHandler);
+formElement.addEventListener('submit', submitFormProfile);
 addButtonPopup.addEventListener('click', ()=>openPopupField(popupPlace));
 closePlacePopup.addEventListener('click', ()=>closePopupField(popupPlace));
-editButtonPopup.addEventListener('click', ()=>openPopupField(popupProfile));
+editButtonPopup.addEventListener('click', ()=>{
+  nameInput.value = nameReplacement.textContent;
+  jobInput.value = jobReplacement.textContent;
+  openPopupField(popupProfile);
+});
 closeProfilePopup.addEventListener('click', ()=>closePopupField(popupProfile));
 closeImagePopup.addEventListener('click', ()=>closePopupField(popupImageContainer));
