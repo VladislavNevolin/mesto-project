@@ -27,6 +27,15 @@ function submitFormPlace (evt){
     evt.target.reset();
 }
 
+const validationParameters = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'popup__error',
+    errorClass: 'popup__error_type_active'
+}; 
 
 
-export {submitFormProfile, submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement};
+
+export {submitFormProfile, submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters};

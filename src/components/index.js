@@ -2,7 +2,7 @@ import '../pages/index.css';
 
 import {addPlace,popupImageContainer} from './card.js';
 import {openPopupField, closePopupField} from './modal.js';
-import {submitFormProfile, submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement} from './utils.js';
+import {submitFormProfile, submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters} from './utils.js';
 import {enableValidation} from './validate.js';
 
 const editButtonPopup = document.querySelector(`.profile__edit-button`);
@@ -11,16 +11,8 @@ const closeProfilePopup = document.querySelector(`button[name='close-profile-but
 const closePlacePopup = document.querySelector(`button[name='close-place-button']`);
 const closeImagePopup = document.querySelector(`button[name='close-image-button']`);
 
-
-
 const formElement = document.querySelector(`.popup__form-profile`);
 const formElementPlace = document.querySelector(`.popup__form-place`);
-
-
-
-
-
-
 
 const popupForm = document.querySelector(`.popup__form`);
 const popupInput = document.querySelector(`.popup__input`);
@@ -54,20 +46,10 @@ const initialCards = [
   }
 ];
 
-const validationParameters = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}; 
-
 initialCards.forEach((item) => {
   addPlace(item.name, item.link);
 });
 
-  
 for (const popup of popups) {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains(`popup_visible`)) {
@@ -94,5 +76,4 @@ popupForm.addEventListener('submit',function (evt) {
    evt.preventDefault();
 });
 
-enableValidation();
-
+enableValidation(validationParameters);
