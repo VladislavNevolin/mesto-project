@@ -1,5 +1,6 @@
 import {closePopupField} from './modal.js';
 import {addPlace} from './card.js';
+import {toggleButtonState} from './validate.js'
 
 const placeName = document.querySelector(`input[name='place-name']`);
 const placeImageLink = document.querySelector(`input[name='place-image']`);
@@ -9,6 +10,19 @@ const popupProfile = document.querySelector(`.profile-popup`);
 const popupPlace = document.querySelector(`.place-popup`);
 const nameReplacement = document.querySelector(`.profile__title`);
 const jobReplacement = document.querySelector(`.profile__subtitle`);
+
+const validationParameters = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'popup__error',
+    errorClass: 'popup__error_type_active'
+};
+
+const formEl = Array.from(popupPlace.querySelectorAll(validationParameters.inputSelector));
+const buttonEl = popupPlace.querySelector('.popup__button-save');
+
 // Изменение данных в попапе профиля
 function submitFormProfile (evt){
     evt.preventDefault();
@@ -23,18 +37,12 @@ function submitFormPlace (evt){
     const placeValue = placeName.value;
     const linkValue = placeImageLink.value;
     addPlace (placeValue, linkValue);
-    closePopupField(popupPlace);
     evt.target.reset();
+    closePopupField(popupPlace);
+    toggleButtonState(formEl, buttonEl, validationParameters); // Исправление ошибки с активной кнопкой сохранить на 2 и последующих вызовах попапа добавления карточки
 }
 
-const validationParameters = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__error',
-    errorClass: 'popup__error_type_active'
-}; 
+ 
 
 
 
