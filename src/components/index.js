@@ -1,54 +1,26 @@
 import '../pages/index.css';
 
-import {addPlace,popupImageContainer} from './card.js';
+
 import {openPopupField, closePopupField} from './modal.js';
-import {submitFormProfile, submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters} from './utils.js';
+import {buttonEl,buttonSaveAvatar,popupAvatar,submitFormAvatar,formElement,submitFormProfile,submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters,profileAvatar,popupProfileForm,formAvatar} from './utils.js';
 import {enableValidation} from './validate.js';
+import { getProfileInfo, getCards} from './api.js';
+import { popupImageContainer,elements,createPlace,formElementPlace } from './card.js';
 
 const editButtonPopup = document.querySelector(`.profile__edit-button`);
 const addButtonPopup = document.querySelector(`.profile__add-button`);
 const closeProfilePopup = document.querySelector(`button[name='close-profile-button']`);
 const closePlacePopup = document.querySelector(`button[name='close-place-button']`);
 const closeImagePopup = document.querySelector(`button[name='close-image-button']`);
-
-const formElement = document.querySelector(`.popup__form-profile`);
-const formElementPlace = document.querySelector(`.popup__form-place`);
-
 const popupForm = document.querySelector(`.popup__form`);
 const popupInput = document.querySelector(`.popup__input`);
 const popups = document.querySelectorAll(`.popup`);
+const changeAvatarImg = document.querySelector(`.profile__avatar-overlay`);
+const closeAvatarPopup = popupAvatar.querySelector(`.popup__button-close`);
 
-// карточки для загрузки
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+let userId;
 
-initialCards.forEach((item) => {
-  addPlace(item.name, item.link);
-});
+const popupButtonSave = document.querySelectorAll(`.popup__button-save`);
 
 for (const popup of popups) {
   popup.addEventListener('mousedown', (evt) => {
@@ -67,13 +39,45 @@ editButtonPopup.addEventListener('click', ()=>{
 });
 formElementPlace.addEventListener('submit',submitFormPlace);
 formElement.addEventListener('submit', submitFormProfile);
-addButtonPopup.addEventListener('click', ()=>openPopupField(popupPlace));
+formAvatar.addEventListener('submit', submitFormAvatar);
+closeAvatarPopup.addEventListener('click', ()=>closePopupField(popupAvatar));
+
+addButtonPopup.addEventListener('click', ()=>{
+  openPopupField(popupPlace);
+  buttonEl.classList.add(validationParameters.inactiveButtonClass);
+  buttonEl.textContent = 'Создать'
+});
 closePlacePopup.addEventListener('click', ()=>closePopupField(popupPlace));
 
 closeProfilePopup.addEventListener('click', ()=>closePopupField(popupProfile));
 closeImagePopup.addEventListener('click', ()=>closePopupField(popupImageContainer));
 popupForm.addEventListener('submit',function (evt) {
    evt.preventDefault();
+});
+
+changeAvatarImg.addEventListener('click', ()=>{
+  openPopupField(popupAvatar);
+  buttonSaveAvatar.classList.add(validationParameters.inactiveButtonClass);
+  buttonSaveAvatar.textContent = 'Создать'
+});
+
+export function renderProfile (data) {
+  nameReplacement.textContent = data.name;
+  jobReplacement.textContent = data.about;
+  profileAvatar.src = data.avatar;
+}
+
+Promise.all([getProfileInfo(), getCards()])
+  .then((data) => {
+    renderProfile(data[0]);
+    userId = data[0].id;
+    const initialCards = data[1];
+    for (const elem of initialCards){
+      elements.append(createPlace(elem.likes, elem.link, elem.name, elem._id, elem.owner._id))
+    }
+  })
+  .catch(err => {
+    console.log(err)
 });
 
 enableValidation(validationParameters);

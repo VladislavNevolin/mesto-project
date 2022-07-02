@@ -1,0 +1,7 @@
+.profile__avatar-container{
+    position: relative;
+    width: 120px;
+    aspect-ratio: 1 / 1;
+    grid-area: avatar;
+    overflow: hidden;
+}
