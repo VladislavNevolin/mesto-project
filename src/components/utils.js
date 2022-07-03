@@ -1,8 +1,8 @@
 import {closePopupField} from './modal.js';
-import {createPlace} from './card.js';
+import {createPlace,elements} from './card.js';
 import {toggleButtonState} from './validate.js'
-import { checkResult,changeProfile,postCard,changeAvatar } from './api.js';
-import {renderProfile} from './index.js'
+import {checkResult,changeProfile,postCard,changeAvatar } from './api.js';
+import {renderProfile,formAva,formEl} from './index.js'
 const formElement = document.querySelector(`.popup__form-profile`);
 
 const placeName = document.querySelector(`input[name='place-name']`);
@@ -34,16 +34,14 @@ const validationParameters = {
     inputErrorClass: 'popup__error',
     errorClass: 'popup__error_type_active'
 };
-const formEl = Array.from(popupPlace.querySelectorAll(validationParameters.inputSelector));
-const formAva = Array.from(popupAvatar.querySelectorAll(validationParameters.inputSelector));
+
 
 // Изменение данных в попапе профиля
  function submitFormProfile (evt){
     evt.preventDefault();
     popupButtonSave.textContent = 'Сохранение...';
     changeProfile(formEditProfileTitleInput.value, formEditProfileSubtitleInput.value)
-      .then(res=>{
-          checkResult(res);
+      .then(()=>{
           nameReplacement.textContent = nameInput.value;
           jobReplacement.textContent = jobInput.value;
           closePopupField(popupProfile);
@@ -61,7 +59,7 @@ function submitFormPlace (evt){
     buttonEl.textContent = 'Сохранение...';
     postCard(placeName.value,placeImageLink.value)
         .then((data)=>{
-            document.querySelector(`.elements`).prepend(createPlace(data.likes, data.link, data.name, data._id, data.owner._id));
+            elements.prepend(createPlace(data.likes, data.link, data.name, data._id, data.owner._id));
             evt.target.reset();
             closePopupField(popupPlace);
         })
@@ -88,7 +86,7 @@ function submitFormAvatar (evt){
             console.log(`Ошибка при изменении аватарки: ${err}`);
         })
         .finally(() => {
-            buttonEl.textContent = 'Создать';
+            buttonSaveAvatar.textContent = 'Создать';
         });
     
     toggleButtonState(formAva,buttonSaveAvatar,validationParameters);

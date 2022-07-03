@@ -1,5 +1,6 @@
 import {openPopupField} from './modal.js';
 import {deleteCard,setLike,deleteLike,checkResult} from './api.js';
+import {userId} from './index.js'
 
 const elementTemplate = document.querySelector(`#element-template`).content;
 const elements = document.querySelector(`.elements`);
@@ -32,10 +33,7 @@ function createPlace (likes, link, name, cardId, owner) {
     elementButtonDelete.addEventListener('click', (evt) =>{
       const element = evt.target.closest(`.element`);
       deleteCard(element.id)
-        .then(res =>{
-          checkResult(res);
-          element.remove()
-        })
+        .then(element.remove())
         .catch(err=>
           console.log(err)
         );
@@ -45,7 +43,6 @@ function createPlace (likes, link, name, cardId, owner) {
       const element = evt.target.closest(`.element`);
       if (elementButtonLike.classList.contains('element__button-heart_active')) {
         deleteLike(element.id)
-          .then((res)=>checkResult(res))
           .then((data)=>{
             element.querySelector(`.element__button-heart-counter`).textContent = data.likes.length;
             elementButtonLike.classList.remove('element__button-heart_active');
@@ -55,7 +52,6 @@ function createPlace (likes, link, name, cardId, owner) {
           );
       } else {
         setLike(element.id)
-          .then((res)=>checkResult(res))
           .then((data) =>{
             elementTheme.querySelector(`.element__button-heart-counter`).textContent = data.likes.length;
             elementButtonLike.classList.add('element__button-heart_active');
@@ -65,14 +61,15 @@ function createPlace (likes, link, name, cardId, owner) {
           );
       }
     });
-    if(owner !== '3bcf4701e0a8d9a47ee4b399') {
+    if(owner !== userId) {
       elementButtonDelete.remove();
     }
     elementTheme.querySelector(`.element__button-heart-counter`).textContent = likes.length;
-    if(likes.some((item) => item._id === '3bcf4701e0a8d9a47ee4b399')) {
+    if(likes.some((item) => item._id === userId)) {
       elementButtonLike.classList.add(`element__button-heart_active`);
     }
     return element;
+    
 }
 
 function addPlace(likes, link, name, cardId, owner) {

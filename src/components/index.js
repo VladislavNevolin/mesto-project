@@ -17,16 +17,15 @@ const popupInput = document.querySelector(`.popup__input`);
 const popups = document.querySelectorAll(`.popup`);
 const changeAvatarImg = document.querySelector(`.profile__avatar-overlay`);
 const closeAvatarPopup = popupAvatar.querySelector(`.popup__button-close`);
-
-let userId;
+export const formEl = Array.from(popupPlace.querySelectorAll(validationParameters.inputSelector));
+export const formAva = Array.from(popupAvatar.querySelectorAll(validationParameters.inputSelector));
+export let userId;
 
 const popupButtonSave = document.querySelectorAll(`.popup__button-save`);
 
 for (const popup of popups) {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains(`popup_visible`)) {
-      closePopupField(popup);
-    } else if (evt.target.classList.contains(`popup_visible`)) {
       closePopupField(popup);
     }
   });
@@ -51,9 +50,6 @@ closePlacePopup.addEventListener('click', ()=>closePopupField(popupPlace));
 
 closeProfilePopup.addEventListener('click', ()=>closePopupField(popupProfile));
 closeImagePopup.addEventListener('click', ()=>closePopupField(popupImageContainer));
-popupForm.addEventListener('submit',function (evt) {
-   evt.preventDefault();
-});
 
 changeAvatarImg.addEventListener('click', ()=>{
   openPopupField(popupAvatar);
@@ -70,7 +66,7 @@ export function renderProfile (data) {
 Promise.all([getProfileInfo(), getCards()])
   .then((data) => {
     renderProfile(data[0]);
-    userId = data[0].id;
+    userId = data[0]._id;
     const initialCards = data[1];
     for (const elem of initialCards){
       elements.append(createPlace(elem.likes, elem.link, elem.name, elem._id, elem.owner._id))

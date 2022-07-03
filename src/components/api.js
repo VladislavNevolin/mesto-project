@@ -17,14 +17,15 @@ export function getCards() {
     return fetch(`${config.baseUrl}/cards`, {
       headers: config.headers
     })
-      .then(res => checkResult(res))
+      .then(res => checkResult(res));
 }
 
 export function deleteCard (cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers
-  });
+  })
+    .then(res => checkResult(res));
 }
 
 export function setLike(cardId) {
@@ -32,6 +33,7 @@ export function setLike(cardId) {
     method: 'PUT',
     headers: config.headers
   })
+    .then(res => checkResult(res));
 }
 
 export function deleteLike(cardId) {
@@ -39,6 +41,7 @@ export function deleteLike(cardId) {
     method: 'DELETE',
     headers: config.headers
   })
+    .then(res => checkResult(res));
 }
 
 export function changeProfile(name,about) {
@@ -50,6 +53,7 @@ export function changeProfile(name,about) {
       about: about
     })
   })
+    .then(res => checkResult(res));
 }
 
 export function postCard (name, link) {
@@ -60,7 +64,8 @@ export function postCard (name, link) {
       name: name,
       link: link
     })
-  }).then((res) => checkResult(res));
+  })
+    .then((res) => checkResult(res));
 }
 
 export function changeAvatar (link){
@@ -70,7 +75,8 @@ export function changeAvatar (link){
     body: JSON.stringify({
       avatar: link
     })
-  }).then((res) => checkResult(res));
+  })
+    .then((res) => checkResult(res));
 }
 
 export function checkResult(res) {
