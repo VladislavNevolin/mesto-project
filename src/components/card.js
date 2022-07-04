@@ -33,7 +33,7 @@ function createPlace (likes, link, name, cardId, owner) {
     elementButtonDelete.addEventListener('click', (evt) =>{
       const element = evt.target.closest(`.element`);
       deleteCard(element.id)
-        .then(element.remove())
+        .then(()=>element.remove())
         .catch(err=>
           console.log(err)
         );

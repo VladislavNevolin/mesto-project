@@ -2,7 +2,7 @@ import {closePopupField} from './modal.js';
 import {createPlace,elements} from './card.js';
 import {toggleButtonState} from './validate.js'
 import {checkResult,changeProfile,postCard,changeAvatar } from './api.js';
-import {renderProfile,formAva,formEl} from './index.js'
+import {renderProfile,formAva,formEl,validationParameters} from './index.js'
 const formElement = document.querySelector(`.popup__form-profile`);
 
 const placeName = document.querySelector(`input[name='place-name']`);
@@ -26,14 +26,7 @@ const popupAvatar = document.querySelector(`.avatar-popup`);
 const buttonSaveAvatar = popupAvatar.querySelector(`.popup__button-save`);
 const avatarLink = popupAvatar.querySelector(`.popup__input`);
 
-const validationParameters = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__error',
-    errorClass: 'popup__error_type_active'
-};
+
 
 
 // Изменение данных в попапе профиля
@@ -92,4 +85,4 @@ function submitFormAvatar (evt){
     toggleButtonState(formAva,buttonSaveAvatar,validationParameters);
 }
 
-export {buttonEl,buttonSaveAvatar,popupAvatar,formAvatar,submitFormAvatar,formElement,submitFormProfile,submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters, profileAvatar,popupProfileForm};
+export {buttonEl,buttonSaveAvatar,popupAvatar,formAvatar,submitFormAvatar,formElement,submitFormProfile,submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, profileAvatar,popupProfileForm};

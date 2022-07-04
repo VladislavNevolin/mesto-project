@@ -2,11 +2,19 @@ import '../pages/index.css';
 
 
 import {openPopupField, closePopupField} from './modal.js';
-import {buttonEl,buttonSaveAvatar,popupAvatar,submitFormAvatar,formElement,submitFormProfile,submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement, validationParameters,profileAvatar,popupProfileForm,formAvatar} from './utils.js';
+import {buttonEl,buttonSaveAvatar,popupAvatar,submitFormAvatar,formElement,submitFormProfile,submitFormPlace, nameInput, jobInput, popupProfile, popupPlace, nameReplacement, jobReplacement,profileAvatar,popupProfileForm,formAvatar} from './utils.js';
 import {enableValidation} from './validate.js';
 import { getProfileInfo, getCards} from './api.js';
 import { popupImageContainer,elements,createPlace,formElementPlace } from './card.js';
 
+export const validationParameters = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_inactive',
+  inputErrorClass: 'popup__error',
+  errorClass: 'popup__error_type_active'
+};
 const editButtonPopup = document.querySelector(`.profile__edit-button`);
 const addButtonPopup = document.querySelector(`.profile__add-button`);
 const closeProfilePopup = document.querySelector(`button[name='close-profile-button']`);
@@ -30,6 +38,8 @@ for (const popup of popups) {
     }
   });
 };
+
+
 
 editButtonPopup.addEventListener('click', ()=>{
   nameInput.value = nameReplacement.textContent;
