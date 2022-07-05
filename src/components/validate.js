@@ -1,4 +1,4 @@
-import { validationParameters } from "./index.js";
+import { validationParameters } from "./utils.js";
 
 const showInputError = (formErSearchEl, inputElement, errorMessage, validationParameters) => {
     const popupErrorText = formErSearchEl.querySelector(`.${inputElement.id}-error`);
